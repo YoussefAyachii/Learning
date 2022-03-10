@@ -1,0 +1,38 @@
+----push---
+
+# push to master, two methods
+# origin: is an option: refers to our git repository
+# main: is the branch that we want to push to.
+# rk: when doing a pull request, do not push on master but on a new branch created previously to any changes from clone
+git push origin main
+git push
+
+# use option -u (for upstream) set the default branch to push to when just using "gi push"
+# synonymes:-u and --set-upstream
+git push -u origin main
+git push -u origin branch1
+
+# to initialise a new git repo from non git dir, enter the dir and write
+git init
+
+# use remote to link the new git dir to github repo, to be able to push
+git remote origin git@repofromgithubcreatedrepo
+
+----branch----
+
+# get actual branch
+git branch
+
+# switch between branches/ create new branches : use git checkout
+# to create a new branch, use option -b
+git checkout -b name_of_new_branch
+
+# switch to another branch
+git checkout main
+git checkout name_of_new_branch
+
+# check the differences/modifications from two branches : do it after add.
+# you must be in a branch and compare modifications with another branch.
+git commit branch_name.
+
+----pull request----

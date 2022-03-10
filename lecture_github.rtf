@@ -1,0 +1,42 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf610
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww24140\viewh13800\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf0 # clone/status/add/commit :\
+When you display all the files (ls -all or ls -al),  you will see all your files plus a .git file.\
+This .git file saves all your commits over time.\
+It has all of the changes recorded in  the history of this repository, which includes the ones we made on github.com.\
+\
+- git status command shows all of the files that were *updated or created or deleted, but haven't been   saved in a commit* yet.\
+When you add a new file, git status will show an \'93untracked files\'94 list which corresponds to files that git doesn\'92t know about yet.\
+- So you have to tell Git to track the file before you can save it: use the git add command.\
+- git add .: tell git to track all the files listed in the untracked and the modified section.\
+- you can add only specific files by git add filename\
+\
+- git commit: the first -m \'93\'85\'94 corresponds to the title of the commit. You can add on the same line another message which corresponds to the description box of the commit. Ex: git commit -m \'93added new file\'94 -m \'93this files is about code in .py\'94\
+- git commit saves changes locally. So versions are stored in the local .git file in the git repo. To save the commit into GitHub, you need to push. \
+\
+# Connect your machine to GitHub: SSH keygen\
+1. Generate ssh-key by using <ssh-keygen -t rsa -b 4096 -C \'93email@adress.com\'94>  command \
+Now, the default file for the SSH key is inside your user directory in the dot SSH directory, and  it will be called id_rsa: ex. Users/Youssef/.ssh/id_rsa.\
+2. Name the generated key (asked by the terminal after executing step 1)\
+3. Asked password: you can chose to not include password by typing enter directly\
+-> key generated\
+\\\
+-Now search for the key that you just  generated. \
+-And now I find that there are two. So  there's testkey and testkey.pub. \
+-So testkey.pub is the key that you're going to upload to  your GitHub interface. pub stands for public, it's called your public key, which means that it's okay for other people to see this key. \
+-The key that was generated without the .pub extension is called your private key, and is the one that you have to keep secure on your local machine, you don't share  this key with anybody. \
+- How it works is that the public key you put on GitHub, and then every time  you want to connect to GitHub or push your code on  GitHub or use your account via your local machine,  you use your private key to show GitHub, that you are the one that generated this public key. It's  a mathematical proof that only this private key could have generated this public key. I'm going  to print out this public key. And your key should  look something very long phrase. It starts by ssh-rsa, it has a bunch of characters in the middle and it ends with your email. Now you need to copy  this whole key\'94\'94\
+\\\
+Now, got to GitHub-Settings-SSH and\'a0\'a0GPG keys. Here you can see any SSH keys associated\'a0with your account.  Click on new SSH\'a0\'a0key, title it like you want. And then you\'a0paste your key in here. And now add SSH key\'a0to confirm my password. And now you can see\'a0 my key was successfully added. The only thing\'a0left to do is to make sure that your local Git\'a0 command line interface knows about the key you\'a0\'a0 just generated. This step is called \'93adding your ssh key to the ssh-agent\'94. See link for steps: (https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)\
+\
+#git push\
+\
+\
+\
+\
+}
