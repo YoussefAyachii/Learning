@@ -1,0 +1,401 @@
+———SQL———
+https://www.w3schools.com/sql/
+
+# To build a web site that shows data from a database, you will need: 
+- An RDBMS database program (i.e. MS Access, SQL Server, MySQL)
+- To use a server-side scripting language, like PHP or ASP
+- To use SQL to get the data you want 
+- To use HTML / CSS to style the page
+
+# RDBMS 
+- RDBMS stands for Relational Database Management System
+- The data in RDBMS is stored in database objects called tables. A table is a collection of related data entries and it consists of columns and rows.
+
+——SQL statements——
+- Most of the actions you need to perform on a database are done with SQL statements.
+- Most Important SQL Commands: 
+	- SELECT - extracts data from a database
+	- UPDATE - updates data in a database
+	- DELETE - deletes data from a database
+	- INSERT INTO - inserts new data into a database
+
+	- CREATE DATABASE - creates a new database
+	- ALTER DATABASE - modifies a database
+	- CREATE TABLE - creates a new table
+	- ALTER TABLE - modifies a table
+	- DROP TABLE - deletes a table
+	- CREATE INDEX - creates an index (search key)
+	- DROP INDEX - deletes an index
+
+
+# Sql Constraints
+
+- SQL constraints are used to specify rules for the data in a table.
+- Constraints are used to limit the type of data that can go into a table. This ensures the accuracy and reliability of the data in the table. If there is any violation between the constraint and the data action, the action is aborted.
+- Constraints can be column level or table level.
+- Constraints can be specified when the table/column is created, or after.
+
+- Most used constraints in sql:
+	- NOT NULL - Ensures that a column cannot have a NULL value
+	- UNIQUE - Ensures that all values in a column are different
+	- PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+	- FOREIGN KEY - Prevents actions that would destroy links between tables
+	- CHECK - Ensures that the values in a column satisfies a specific condition
+	- DEFAULT - Sets a default value for a column if no value is specified
+	- CREATE INDEX - Used to create and retrieve data from the database very quickly
+
+- You can add multiple constraints to the same column,i.e. NOT NULL UNIQUE.
+
+# PRIMARY KEY constraint
+- Both the UNIQUE and PRIMARY KEY constraints provide a guarantee for uniqueness for a column or set of columns.
+- A PRIMARY KEY constraint automatically has a UNIQUE constraint.
+- However, you can have many UNIQUE constraints per table, but only one column with PRIMARY KEY constraint per table.
+
+- The PRIMARY KEY constraint uniquely identifies each record in a table.
+- Primary keys must contain UNIQUE values, and cannot contain NULL values.
+- A table can have only ONE primary key; and in the table, this primary key can consist of single or multiple columns (fields).
+
+# Notes:
+
+- in sql, rows are called records , columns are called fields.
+- sql statements can be written in uppercase or downcase
+- sql query always ends up with a “;”
+- when specifying multiple columns, use “,”
+- not that when specifying columns, it can be required to add them into ( ), I.g. when using INSERT INTO statement.
+- some sql queries can depend on the used RDBMS.
+- sql Clauses are: FROM, WHERE, …
+- sql requires single quotes around text values (most database systems will also allow double quotes).  However, numeric fields should not be enclosed in quotes.
+- sql operators are: AND, OR, NOT, =, <, >, =<, =>, <> (same as !=), BETWEEN, LIKE and IN.
+- WHERE/ WHERE NOT clause can be combined with AND, OR, and NOT operators.
+- sql keywords are: ORDER BY _colname_ DESC/ASC, 
+- sql values are: NULL, 2, “str”, 
+- in sql, NULL value refers to the absence of value (None in py). 
+- it is not possible to test for NULL values with comparison operators, such as =, <, or <>. Use IS NULL or IS NOT NULL instead of =NULL and <>NULL (not a sql syntax).
+
+
+---—SELECT——
+
+- The SELECT statement is used to select data from a database.  The data returned is stored in a result table, called the result-set.
+
+# select all the records in the "Customers" table
+SELECT * FROM Customers;
+
+# select column from Customers table
+SELECT CustomerName, City FROM Customers;
+
+# return only distinct values (unique(_) in R)
+SELECT DISTINCT CustomerAge, City FROM Customers;
+
+# return the number of different (distinct) customer countries:  (not working in Mozilla cause uses Microsoft Access databases)
+SELECT COUNT(DISTINCT Country) FROM Customers;
+
+# select all the customers from the country "Mexico", in the "Customers" table: 
+SELECT * FROM Customers
+WHERE Country=“Mexico”;
+
+# select all fields from "Customers" where country is "Germany" AND city is "Berlin":
+SELECT * FROM Customers
+WHERE Country=“Germany” AND Country=“Berlin”;
+
+# select all fields from "Customers" where city is "Berlin" OR "München":
+SELECT * FROM Customers WHERE City='Berlin' OR City='München';
+
+# select all fields from "Customers" where country is "Germany" OR "Spain":
+SELECT * FROM Customers WHERE Country='Germany' OR Country='Spain';
+
+# select all fields from "Customers" where country is NOT "Germany":
+SELECT * FROM Customers
+WHERE NOT Country “Germany”;
+
+# select all fields from "Customers" where country is "Germany" AND city must be "Berlin" OR "München”:
+SELECT * FROM Customers
+WHERE Country=“Germany” AND (City=“Berlin” OR City=“Munchen”);
+
+# The following SQL statement selects all fields from "Customers" where country is NOT "Germany" and NOT "USA":  
+SELECT * FROM Customers
+WHERE NOT Country=“Germany” AND NOT Country=“USA”;
+
+# select all customers from the "Customers" table, sorted by the "Country" column:
+SELECT * FROM Customers
+ORDER BY Country;
+
+# select all customers from the "Customers" table, sorted DESCENDING by the "Country" column:
+SELECT * FROM Customers
+ORDER BY Country DESC;
+
+# selects all customers from the "Customers" table, sorted by the "Country" and the "CustomerName" column. This means that it orders by Country, but if some rows have the same Country, it orders them by CustomerName:
+SELECT * FROM Customers
+ORDER BY Country, CustomerName;
+
+# selects all customers from the "Customers" table, sorted ascending by the "Country" and descending by the "CustomerName" column:
+SELECT * FROM Customers
+ORDER BY Country ASC, CustomerName DESC;
+
+# return all customers with a NULL value in the "Address" field:
+SELECT * FROM Customers
+WHERE Address IS NULL;
+
+# return all customers with a not NULL value in the "Address" field:
+SELECT * FROM Customers
+WHERE Address IS NOT NULL;
+
+
+——INSERT INTO——
+
+- The INSERT INTO statement is used to insert new records in a table.
+- It is possible to write the INSERT INTO statement in two ways:  
+	1. Specify both the column names and the values to be inserted:
+	INSERT INTO Customers (Colname1, Colname2, Colname5)
+	VALUES (value1, value2, value5);
+	2. If you are adding values for all the columns of the table, you do not need to specify the column names:
+	INSERT INTO Customers VALUES (value1, value2, …);
+
+# insert a new record in the "Customers" table:
+INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+VALUES ('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway');
+
+# insert a new record, but only insert data in the "CustomerName", "City", and "Country" columns (CustomerID will be updated automatically): 
+INSERT INTO Customers (CustomerName, City, Country) VALUES ('Cardinal', 'Stavanger', 'Norway');
+
+——UPDATE ——
+
+- The UPDATE statement is used to modify the existing records in a table.
+- We usually use the follwing syntax: UPDATE _table_ SET _col1=value_, _col2=value_ WHERE _condition_ ;
+- Be careful when updating records in a table! Notice the WHERE clause in the UPDATE statement. The WHERE clause specifies which record(s) that should be updated. If you omit the WHERE clause, all records in the table will be updated!
+- Be careful when updating records. If you omit the WHERE clause, ALL records will be updated!  
+
+# update the first customer (CustomerID = 1) with a new contact person and a new city.
+UPDATE Customers 
+SET ContactName=“Fredo”, City=“Texas”
+WHERE CustomerID=1;
+
+# update the ContactName to "Juan" for all records where country is "Mexico":
+UPDATE Customers
+SET ContactName=“Juan”
+WHERE Country=“Mexico”;
+
+# Update all records, case when forgetting the where clause:
+UPDATE Customers
+SET ContactName=“Juan”;
+
+——DELETE——
+
+- The DELETE statement is used to delete existing records in a table. 
+- Syntax: DELETE FROM table_name WHERE condition; 
+
+# delete the customer "Alfreds Futterkiste" from the "Customers" table:
+DELETE FROM Customers
+WHERE CustomerName="Alfreds Futterkiste”;
+
+# delete all rows in a table without deleting the table. This means that the table structure, attributes, and indexes will be intact:
+DELETE FROM Customers;
+
+
+— — … ——
+
+------DATABASES------
+—— CREATE DATABASE ——
+
+- The CREATE DATABASE statement is used to create a new SQL database (=! Table).
+- Syntax: CREATE DATABASE databasename;
+- Once a database is created, you can check it in the list of databases with the following SQL command: SHOW DATABASES;
+- Make sure you have admin privilege before creating any database.
+
+# create a database called "testDB":
+CREATE DATABASE testDB;
+
+——DROP DATABASE——
+
+- The DROP DATABASE statement is used to delete an existing SQL database. 
+- Be careful before dropping a database. Deleting a database will result in loss of complete information stored in the database! 
+- Once a database is dropped, you can check it in the list of databases with the following SQL command: SHOW DATABASES;
+
+# drop the existing database "testDB":
+DROP DATABASE testDB;
+
+--BACKUP DATABASE--
+
+- The BACKUP DATABASE statement is used in SQL Server to *create a full back up* of an existing SQL database. This means that every table of the database is backed up/saved in the chosen storage device.
+- Syntax: BACKUP DATABASE databasename TO DISK = "filepath";
+- Tip: Always back up the database to a different drive than the actual database. Then, if you get a disk crash, you will not lose your backup file along with the database.
+- Differential back up reduces the back up time (since only the changes are backed up).
+- Differential back syntax : BACKUP DATABASE databasename TO DISK = "filepath" WITH DIFFERENTIAL ;
+
+# create a full back up of the existing db "testDB" to the D disk:
+BACKUP DATABASE testDB
+TO DISK = 'D:\backups\testDB.bak' ;
+
+# creates a differential back up of the database "testDB":
+BACKUP DATABASE testDB
+TO DISK = 'D:\backups\testDB.bak'
+WITH DIFFERENTIAL;
+
+--CREATE TABLE--
+
+- The CREATE TABLE statement is used to create a new table in a database.
+- Syntax:
+CREATE TABLE table_name (
+	column_name1 datatype,
+	column_name2 datatype,
+	...
+);
+- The datatype parameter specifies the type of data the column can hold (e.g. varchar(255), int, date, year, etc.).
+- columns of type varchar(255) will hold characters with maximum is 255 characters.
+- CREATE TABLE create an empty table but with column names.
+- The created empty table can be filled withed INSERT INTO statement.
+
+- A copy of an existing table can also be created using CREATE TABLE.
+- The new table gets the same column definitions. All columns or specific columns can be selected.
+- If you create a new table using an existing table, the new table will be filled with the existing values from the old table.
+- Syntax:
+CREATE TABLE table_name_copy
+SELECT col1, col2, ..
+FROM original_table;
+
+# create a table called "Persons" that contains five columns: PersonID, LastName, FirstName, Address, and City:
+CREATE TABLE Pearsons (
+	PersonID int,
+	LastName varchar(255),
+	FirstName varchar(255),
+	Address varchar(255),
+	City varchar(255)
+);
+
+# create a copy of an existing table
+CREATE TABLE Customers_bis
+SELECT *
+FROM Customers;
+
+# create a copy of an existing table with specified columns
+CREATE TABLE TestTables AS
+SELECT CustomerName, ContactName
+FROM Customers;
+
+--DROP TABLE--
+
+- The DROP TABLE statement is used to drop an existing table in a database.
+- Be careful before dropping a table. Deleting a table will result in loss of complete information stored in the table!
+
+# drop the existing table "Shippers":
+DROP TABLE Shippers;
+
+--TRUNCATE TABLE--
+
+- The TRUNCATE TABLE statement is used to delete the data (all cells  of the table) inside a table, but not the table itself.
+
+# delete data from "Shippers" table:
+TRUNCATE TABLE Shippers;
+
+--ALTER TABLE--
+
+- ALTER refers to modify
+- used to manage columns in a given table: add, delete, or modify columns in an existing table.
+- The ALTER TABLE statement is also used to add and drop various constraints on an existing table.
+- Note that ADD is one word but DROP COLUMN is composed of 2 words.
+- MODIFY COLUMN syntax depend on the used RDBMS. here my sql is shown only.
+- Do not forget to specify column datatype when creating or modifying a new column.
+
+# add an "Email" column to the "Customers" table:
+ALTER TABLE Customers
+ADD Email varchar(255);
+
+# add a column named "DateOfBirth" in the "Persons" table.
+ALTER TABLE Pearsons
+ADD DateOfBirth date;
+
+# delete the "Email" column from the "Customers" table:
+ALTER TABLE Customers
+DROP COLUMN Email;
+
+# change the data type of a column in a table,
+ALTER TABLE table_name
+MODIFY COLUMN column_name datatype;
+
+# change the data type of the column named "DateOfBirth" in the "Persons" table into year.
+ALTER TABLE Pearsons
+ALTER COLUMN DateOfBirth year;
+
+--- Constraints ---
+
+\\UNIQUE\\
+
+- Constraints can be specified when the table is created with the CREATE TABLE statement, or after the table is created with the ALTER TABLE statement.
+- Constraint syntax when creating a table:
+CREATE TABLE table_name (
+	colname1 datatype constraint,
+	...
+);
+- Constraint syntax when table already created:
+ALTER TABLE table_name
+ALTER COLUMN colname datatype constraint;
+
+# create a new table Pearsons and ensure that the "ID", "LastName", and "FirstName" columns will NOT accept NULL values when the "Persons" table is created:
+CREATE TABLE Pearsons (
+	ID int NOT NULL UNIQUE,
+	LastName varchar(255) NOT NULL,
+	FirstName varchar(255) NOT NULL,
+	Age int,
+);
+
+# create a NOT NULL constraint on the "Age" column when the "Persons" table that is already created:
+ALTER TABLE Pearsons
+ALTER COLUMN Age int NOT NULL;
+
+# create a NOT NULL and a UNIQUE constraints on the "Age" column when the "Persons" table that is already created:
+ALTER TABLE Pearsons
+ALTER COLUMN Name int NOT NULL UNIQUE;
+
+#  creates a UNIQUE constraint on the "ID" column when the "Persons" table is created: (SQL Server / Oracle / MS Access):
+CREATE TABLE Pearsons (
+	ID int NOT NULL UNIQUE,
+	LastName varchar(255) NOT NULL
+)
+
+#  creates a UNIQUE constraint on the "ID" column when the "Persons" table is created: (MySQL):
+CREATE TABLE Pearsons (
+	ID int NOT NULL,
+	LastName varchar(255) NOT NULL
+	UNIQUE (ID)
+)
+
+# create a UNIQUE constraint on the "ID" column when the table is already created:
+ALTER TABLE Pearsons
+ADD UNIQUE (ID);
+
+# drop a UNIQUE constraint on the Age column:
+ALTER TABLE Pearsons
+DROP CONSTRAINT Age;
+
+# drop a UNIQUE constraint on the Age column: (MySQL):
+ALTER TABLE Pearsons
+DROP INDEX Age;
+
+\\PRIMARY KEY\\
+
+# create a PRIMARY KEY on the "ID" column when the "Persons" table is created: (SQL Server / Oracle / MS Access)
+CREATE TABLE Pearsons (
+	ID int NOT NULL PRIMARY KEY,
+	FirstName varchar(255)
+)
+
+# create a PRIMARY KEY on the "ID" column when the "Persons" table is created: (SQL Server / Oracle / MS Access)
+CREATE TABLE Pearsons (
+	ID int NOT NULL,
+	FirstName varchar(255),
+	PRIMARY KEY (ID)
+)
+
+# create a PRIMARY KEY constraint on the "ID" column when the table is already created (MySQL / SQL Server / Oracle / MS Access):
+ALTER TABLE Pearsons
+ADD PRIMARY KEY (ID)
+
+# drop a PRIMARY KEY (and all other) constraint(s) on PK_Pearson column:
+ALTER TABLE Persons
+DROP CONSTRAINT PK_Person;
+
+# drop a PRIMARY KEY (and all other) constraint(s) on PK_Pearson column: (MySQL):
+ALTER TABLE Persons
+DROP PRIMARY KEY;
+
+\\FOREIGN KEY\\
+
