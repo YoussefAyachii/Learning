@@ -1,4 +1,31 @@
-----push---
+----.git file----
+
+- When you display all the files (ls —all or ls -a),  you will see all your files plus a hidden .git file.
+- .git file saves all your commits over time. It’s presence shows that the corresponding directory is a git file.
+- .git has all of the changes recorded in the history of this repository, which includes the ones we made on github.com.
+
+----git status, add----
+
+- git status command shows all of the files that were *updated or created or deleted, but haven't been saved in a commit* yet.
+- When you add a new file, git status will show an “untracked files” list which corresponds to files that .git doesn’t know about yet cause not added yet.
+- So you have to tell Git to track the file before you can save it: use the git add command.
+
+# track all the files listed in the untracked and the modified section.
+git add --all
+
+# track specific file file_name.py
+git add file_name.py
+
+----git commit----
+
+- git commit saves changes locally. So versions are stored in the local .git file in the git repo. 
+- To save the commit into GitHub, you need to push. 
+- git commit: the first -m “…” corresponds to the title of the commit. You can add on the same line another message which corresponds to the description box of the commit.
+
+# commit changes and specify a title and description
+git commit -m “added new file” -m “this files is about code in .py”
+
+----git push---
 
 # push to master, two methods
 # origin: is an option: refers to our git repository
@@ -18,7 +45,7 @@ git init
 # use remote to link the new git dir to github repo, to be able to push
 git remote origin git@repofromgithubcreatedrepo
 
-----branch----
+----git branch----
 
 # get actual branch
 git branch
@@ -36,3 +63,37 @@ git checkout name_of_new_branch
 git commit branch_name.
 
 ----pull request----
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Additional : 
+---- Connect your machine to GitHub: SSH keygen ----
+
+1. Generate ssh-key by using <ssh-keygen -t rsa -b 4096 -C “email@adress.com”>  command 
+Now, the default file for the SSH key is inside your user directory in the dot SSH directory, and  it will be called id_rsa: ex. Users/Youssef/.ssh/id_rsa.
+2. Name the generated key (asked by the terminal after executing step 1)
+3. Asked password: you can chose to not include password by typing enter directly
+-> key generated
+
+-Now search for the key that you just  generated. 
+-And now I find that there are two. So  there's testkey and testkey.pub. 
+-So testkey.pub is the key that you're going to upload to  your GitHub interface. pub stands for public, it's called your public key, which means that it's okay for other people to see this key. 
+-The key that was generated without the .pub extension is called your private key, and is the one that you have to keep secure on your local machine, you don't share  this key with anybody. 
+- How it works is that the public key you put on GitHub, and then every time  you want to connect to GitHub or push your code on  GitHub or use your account via your local machine,  you use your private key to show GitHub, that you are the one that generated this public key. It's  a mathematical proof that only this private key could have generated this public key. I'm going  to print out this public key. And your key should  look something very long phrase. It starts by ssh-rsa, it has a bunch of characters in the middle and it ends with your email. Now you need to copy  this whole key””
+
+Now, got to GitHub-Settings-SSH and  GPG keys. Here you can see any SSH keys associated with your account.  Click on new SSH  key, title it like you want. And then you paste your key in here. And now add SSH key to confirm my password. And now you can see  my key was successfully added. The only thing left to do is to make sure that your local Git  command line interface knows about the key you   just generated. This step is called “adding your ssh key to the ssh-agent”. See link for steps: (https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
