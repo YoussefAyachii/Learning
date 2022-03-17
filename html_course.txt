@@ -1,0 +1,288 @@
+------HTML------
+
+- HTML is the standard markup language for creating Web pages.
+- HTML describes the structure of a Web page.
+- HTML elements tell the browser how to display the content.
+- HTML tags are not case sensitive: <P> means the same as <p>, but the convention is lowercase.
+
+- All HTML documents must start with a document type declaration: <!DOCTYPE html>.
+- The HTML document itself begins with <html> and ends with </html>.
+- The visible part of the HTML document is between <body> and </body>.
+- The <!DOCTYPE> declaration represents the document type, and helps browsers to display web pages correctly.
+
+- A html document always starts with <!DOCTYPE html>.
+- The <!DOCTYPE html> declaration defines that this document is an HTML5 document
+- The <html> element is the root element marks the starting and the ending </html> of the html webpage. 
+
+- The simplest webpage syntax corresponds to: 
+<!DOCTYPE html>
+<html>
+<head> 
+    <title> </title> 
+</head>
+<body> </body>
+</html>
+
+- The <head> element contains meta information about the HTML page
+- The <title> element specifies a title for the HTML page (which is shown in the browser's title bar or in the page's tab)
+- The <body> element defines the document's body, and is a container for all the visible contents, such as headings, paragraphs, images, hyperlinks, tables, lists, etc.
+
+- An HTML element is defined by a start tag, some content, and an end tag.
+- Html element syntax: <tagname> ..content.. </tagname>
+- The HTML element is everything from the start tag <tagname> to the end tag </tagname>.
+
+- Some HTML elements have no content (like the <br> element). These elements are called empty elements. Empty elements do not have an end tag!
+- The purpose of a web browser is to read HTML documents and display them correctly.
+- The content inside the <body> section will be displayed in a browser. The content inside the <title> element will be shown in the browser's title bar or in the page's tab.
+- When creating a webpage locally, you can visualise it by writing the file path inside the URL section of the web browser.
+
+# html display
+- You cannot be sure how HTML will be displayed.
+- Large or small screens, and resized windows will create different results.
+- With HTML, you cannot change the display by adding extra spaces or extra lines in your HTML code.
+- The browser will automatically remove any extra spaces and lines when the page is displayed.
+
+# html comments
+- HTML comments are not displayed in the browser, but they can help document your HTML source code.
+- syntax: <!-- comment here -->
+- Notice that there is an exclamation point (!) in the start tag, but not in the end tag.
+- You can also hide more than one lines:
+<!--
+<p>Look at this cool image:</p>
+<img border="0" src="pic_trulli.jpg" alt="Trulli">
+-->
+
+--tags--
+- HTML headings are defined with the <h1> to <h6> tags.
+- HTML paragraphs are defined with the <p> tag.
+- HTML links are defined with the <a> tag.
+- HTML images are defined with the <img> tag.
+
+# <a> tag define a link : <a href=""> </a>
+<a href="apple.com"> link name </a>
+
+# <img> tag define an image : <img src="" alt="" width="" height=""> </img>
+<img src="img1.png" alt="text to display if image does not apppear" width="104" height="142">
+
+--attributes--
+- All HTML elements can have attributes
+- Attributes provide additional information about elements
+- Attributes are always specified in the start tag
+- Attributes usually come in name/value pairs like: name="value"
+
+- href in <a> tag in called an attribute.
+- Attributes are defined inside the starting tag and are used to provide additional information about the HTML elements.
+
+# img
+- In <img> tag, the src attribute specifies the path to the image to be displayed.
+There are two ways to specify the URL in the src attribute:
+    1. Absolute URL - Links to an external image that is hosted on another website. Ex: src="https://../../img.jpg".
+    Notes: External images might be under copyright. In addition, you cannot control external images; it can suddenly be removed or changed.
+    
+    2. Relative URL - Links to an image that is hosted within the website. 
+    Here, the URL does not include the domain name.
+    If the URL begins without a slash, it will be relative to the current page. Example: src="img_girl.jpg".
+    If the URL begins with a slash, it will be relative to the domain. Example: src="/images/img_girl.jpg".
+    Tip: It is almost always best to use relative URLs. They will not break if you change domain.
+
+- The <img> tag should also contain the width and height attributes, which specifies the width and height of the image (in pixels).
+
+# style
+- The style attribute is used to add styles to an element, such as color, font, size, and more.
+<p style="color:red;"> this is a red paragraph. </p>
+
+# lang
+- The lang attribute should always be included inside the <html> tag, to declare the language of the Web page. This is meant to assist search engines and browsers.
+<html lang="en">
+- Country codes can also be added to the language code in the lang attribute.
+- the first two characters define the language of the HTML page, and the last two characters define the country.
+<html lang="en-US">
+<html lang="fr-BE">
+
+# title
+- title attribute != title tag
+- *The value of the title attribute will be displayed as a tooltip when you mouse over the element.*
+- The title attribute defines some extra information about an element.
+- it can be very usefull when it's attributed to a <botton> tag for ex.
+<h2 title="I'm a header">The title Attribute</h2> 
+
+--empty html elements--
+- HTML elements with no content are called empty elements.
+- Empty tags does not have a closing tag.
+- Ex: <br> tag, br for break, defines a line break.
+
+# define a line break after a paragraph.
+<p> This is a paragraph. <br> It will be on two lines. </p>
+
+--tags--
+
+# <h>
+- Browsers automatically add some white space (a margin) before and after a heading.
+- Search engines use the headings to index the structure and content of your web pages.
+- It is important to use headings to show the document structure.
+- Use HTML headings for headings only. Don't use headings to make text BIG or bold.
+- Each HTML heading has a default size. However, you can specify the size for any heading with the style attribute, using the CSS font-size property:
+<h1 style="font-size:60px;">Heading 1</h1>
+
+# <p>
+- A paragraph always starts on a new line, and browsers automatically add some white space (a margin) before and after a paragraph.
+
+# <br>
+- The HTML <br> element defines a line break.
+- Use <br> if you want a line break (a new line) without starting a new paragraph.
+- The <br> tag is an empty tag, which means that it has no end tag.
+
+# <hr>
+- hr define a horizontal line.
+- it's an empty element.
+- The <hr> tag defines a thematic break in an HTML page, and is most often displayed as a horizontal rule.
+
+# <pre>
+- pre for preformatted text.
+- The text inside a <pre> element is displayed in a fixed-width font (usually Courier), and it preserves both spaces and line breaks.
+
+--styles--
+- The HTML style attribute is used to add styles to an element, such as color, font, size, and more.
+- Setting the style of an HTML element, can be done with the style attribute.
+- Syntax: <tagname style="property:value;">
+- The property is a CSS property. The value is a CSS value.
+
+# background color
+- The CSS background-color property defines the background color for an HTML element.
+<body style="background:powderblue;"> 
+<h1> title here </h1>
+<p style="background-color:tomato;">This is a paragraph.</p>
+</body>
+
+# borders
+- The CSS border property defines the text border
+- Notice that a single CSS property can have multiple CSS values.
+<h1 style="border:2px solid Tomato;">Hello World</h1>
+
+# text color
+- The CSS color property defines the text color for an HTML element:
+<h1 style="color:blue;"> title here </h1>
+
+# colors
+- HTML colors are specified with predefined color names, or with RGB, HEX, HSL, RGBA, or HSLA values.
+- html color names are special. For example, Tomato is a html color meaning red.
+<h1 style="background-color: Tomato;">Lorem ipsum...</h1>
+<h1 style="background-color: rgb(255, 99, 71);">...</h1>
+<h1 style="background-color: #ff6347;">...</h1>
+
+# fonts
+- The CSS font-family property defines the font/police to be used for an HTML element.
+<h3 style="font-family:verdana;"> third heading here </h3>
+
+# text size
+- The CSS font-size property defines the text size for an HTML element:
+<h1 style="font-size:300%;"> This is a three times bigger header </h1>
+
+# text alignment
+- The CSS text-align property defines the horizontal text alignment for an HTML element:
+<h2 style="text-align:center;"> centred heading </h2>
+
+# text formating
+- Formatting elements were designed to display special types of text:
+    <b> - Bold text
+    <strong> - Important text, the content inside is typically displayed in bold.
+    <i> - Italic text
+    <em> - Emphasized text, typically in italic. 
+    <mark> - Marked text, defines text that should be marked or highlighted.
+    <small> - Smaller text
+    <del> - Deleted text, tire un trait.
+    <ins> - Inserted text, surligner.
+    <sub> - Subscript text (index)
+    <sup> - Superscript text (power)
+- ex: <p>Do not forget to buy <mark>milk</mark> today.</p>
+
+# quotation, citation
+    <abbr> - Defines an abbreviation or acronym
+    <address> - Defines contact information for the author/owner of a document
+    <bdo> - Defines the text direction
+    <blockquote> - Defines a section that is quoted from another source
+    <cite> - Defines the title of a work
+    <q>	- Defines a short inline quotation
+
+-- CSS --
+- CSS stands for Cascading Style Sheets.
+- CSS is used to format the layout of a webpage.
+- CSS saves a lot of work. It can control the layout of multiple web pages all at once.
+
+- The word cascading means that a style applied to a parent element will also apply to all children elements within the parent.
+So, if you set the color of the body text to "blue", all headings, paragraphs, and other text elements within the body will also get the same color (unless you specify something else).
+ 
+- CSS can be added to HTML documents in 3 ways:
+ - Inline - by using the *style attribute* inside HTML elements
+ - Internal - by using a *<style> element in the <head> section*
+ - External - by using a <link> element to link to an external CSS file
+The most common way to add CSS, is to keep the styles in External CSS files.
+
+# 1. inline CSS
+
+- syntax: <tagname style="property:value;">
+- Ex:
+<h1 style="color:blue;">A Blue Heading</h1>
+
+# 2. internal CSS
+
+- An internal CSS is used to define a style for a single HTML page.
+- An internal CSS is defined in the <head> section of an HTML page, within a <style> element.
+- syntax inside head tag: <style> tagname1 {property:value;} tagname2 {property:value;} </style>
+
+- Ex: set the text color of ALL the <h1> elements (on that page) to blue, and the text color of ALL the <p> elements to red.
+In addition, the page will be displayed with a "powderblue" background color: 
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        body {background-color: powderblue;}
+        h1   {color: blue;}
+        p    {color: red;}
+        </style>
+    </head>
+
+    <body>
+        <h1>This is a heading</h1>
+    </body>
+</html>
+
+# 3. external CSS
+
+- An external style sheet is used to define the style for many HTML pages.
+- To use an external style sheet, add a <link> to it in the <head> section of each HTML page.
+- The <link> element is an empty element, it contains attributes only.
+- The <link> element require both a rel attribute which specifies the nature of the linked file and the style sheet file path.
+- For css style files, use rel="stylesheet". For author link, rel="author", ect.
+
+# specify to a html page the styles.css style sheet:
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+- the style sheet must NOT contain any HTML code, and must be saved with a .css extension.
+
+# write a css file named styles.css specifying the body background color, the h1 text color and the paragraph text color:
+body {
+  background-color: powderblue;
+}
+h1 {
+  color: blue;
+}
+p {
+  color: red;
+}
+
+--HTML Links--
+
+
+
+
+
+
+
+
+
+
+References
+[1] https://www.w3schools.com/html/html_links.asp

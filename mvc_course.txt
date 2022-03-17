@@ -1,0 +1,80 @@
+--- MVC Architecture and Frameworks ---
+
+- The MVC architecture pattern turns complex application development into a much more manageable process.
+- It allows several developers to simultaneously work on the application.
+
+Model–view–controller (MVC) is a software design pattern commonly used for developing user interfaces that divide the related program logic into three interconnected elements:
+    - Model: The central component of the pattern. It is the application's dynamic data structure, independent of the user interface.[10] It directly manages the data, logic and rules of the application.
+    - View: The frontend or graphical user interface (GUI). It carries any representation of information such as a chart, diagram or table. 
+    - Controller: The brains of the application that controls how data is displayed. It ccepts an input and converts it to commands for the model or view.
+
+In addition to dividing the application into these 3 components, the model–view–controller design defines the interactions between them:
+- The model is responsible for managing the data of the application. It receives user input from the controller.
+- The view renders presentation of the model in a particular format.
+- The controller responds to the user input and performs interactions on the data model objects. The controller receives the input, optionally validates it and then passes the input to the model.
+
+- MVC has been widely adopted as a design for web applications.
+
+
+# MVC and Flask
+- a software framework is an abstraction in which software, providing generic functionality, can be selectively changed by additional user-written code, thus providing application-specific software.
+- It provides a standard way to build and deploy applications to facilitate the development of software applications, products and solutions.
+- Flask is a framework used for developing web applications using python.
+
+--- Flask ---
+- Flask is an MVC framework used for developing web applications using python.
+- Keep in mind that there are three different types of things you should be thinking about when building an application: Data (M), View (V) and Controller (C).
+
+- To separate your logic (your controller, .py files) from your HTML (your view, .html files) you develop your controler inside the .py files, and you refer to this latter in an .html file.
+
+- Commun webpage features of the html file can be saved into layout.html file. This latter will carry specific blocks {% block block_name %} file_name {% endblock %}.
+- The file_name will carry then {% extends "layout.html" %} as the first line. Then will write the page specific features inside the block_name. 
+
+- block is used for overriding specific parts of a template.
+
+
+
+--Django---
+see: https://docs.djangoproject.com/en/2.1/ref/templates/language/#template-inheritance
+
+# template inheritance
+- The most powerful – and thus the most complex – part of Django’s template engine is template inheritance.
+- Template inheritance allows you to build a base “skeleton” template that contains all the common elements of your site and defines blocks that child templates can override.
+
+ex:
+---
+...
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>{% block title %}My amazing site{% endblock %}</title>
+    </head>
+    <body>
+        {% block content %}{% endblock %}
+    </body>
+...
+---
+
+- This template, which we’ll call base.html, defines a simple HTML skeleton document.
+- It’s the job of “child” templates to fill the empty blocks with content.
+
+- The block tag in this example defines 2 blocks that child templates can fill in.
+
+ex: a child template might look like this:
+---
+{% extends "base.html" %}
+
+{% block title %}block to fill here{% endblock %}
+
+{% block content %}
+    {% for entry in blog_entries %}
+        <h2>{{ entry.title }}</h2>
+        <p>{{ entry.body }}</p>
+    {% endfor %}
+{% endblock %}
+---
+
+- The extends tag tells the template engine that this template “extends” another template.
+When the template system evaluates this template, first it locates the parent – in this case, “base.html”.
+
+
+
