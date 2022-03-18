@@ -3,7 +3,7 @@
 - The MVC architecture pattern turns complex application development into a much more manageable process.
 - It allows several developers to simultaneously work on the application.
 
-Model–view–controller (MVC) is a software design pattern commonly used for developing user interfaces that divide the related program logic into three interconnected elements:
+- Model–view–controller (MVC) is a software design pattern commonly used for developing user interfaces that divide the related program logic into three interconnected elements:
     - Model: The central component of the pattern. It is the application's dynamic data structure, independent of the user interface.[10] It directly manages the data, logic and rules of the application.
     - View: The frontend or graphical user interface (GUI). It carries any representation of information such as a chart, diagram or table. 
     - Controller: The brains of the application that controls how data is displayed. It ccepts an input and converts it to commands for the model or view.
@@ -21,7 +21,7 @@ In addition to dividing the application into these 3 components, the model–vie
 - It provides a standard way to build and deploy applications to facilitate the development of software applications, products and solutions.
 - Flask is a framework used for developing web applications using python.
 
---- Flask ---
+# Flask
 - Flask is an MVC framework used for developing web applications using python.
 - Keep in mind that there are three different types of things you should be thinking about when building an application: Data (M), View (V) and Controller (C).
 
@@ -34,12 +34,98 @@ In addition to dividing the application into these 3 components, the model–vie
 
 
 
---Django---
-see: https://docs.djangoproject.com/en/2.1/ref/templates/language/#template-inheritance
+---Falsk and Django---
+
+The framework is a collection of modules that helps developers write the code for a web application.
+It is a fully-developed package that makes the web development process easier, faster, scalable, and reliable. 
+Django and Flask are types of frameworks written in the Python programming language.
+Django and Flask are both python-based open-source framework to design web applications.
+
+Flask is categorized as a micro framework because it does not depend on external libraries to perform the tasks of a framework. It has its tools, technologies and libraries to support the functionalities of web application development, which makes Flask more independent and flexible.
+Flask is much simpler than Django. 
+
+Django is a full-stack web framework that allows suitability for both back-end and front-end development.
+
+Django vs Flask: one is an open-source framework for rapid development while the latter is a light-end framework for standard functionalities and both have their functionalities.
+For full compairison visit https://www.interviewbit.com/blog/flask-vs-django/
+
+
+# templates
+- To generate HTML dynamically, flask and django rely on templates. 
+- A template contains the static parts of the desired HTML output as well as some special syntax describing how dynamic content will be inserted.
+
+- A template contains the static parts of the desired HTML output as well as some special syntax describing how dynamic content will be inserted.
+- a template engine (i.g. Jinja) is a software designed to combine templates with a data model to produce result documents.
+- Jinja is a web template engine for the Python programming language.
+- Using Jinja, special placeholders in the template ({}, {% %}, ..) allow writing code similar to Python syntax. Then the template is passed data to render the final document.
+
+- The language that the templates are written in is known as a template language.
+- Note that Django have it's own template language "but can use Jinja as well".
+
+----Jinja----
+
+- A Jinja template is simply a text file. It doesn’t need to have a specific extension: .html, .xml, or any other extension is just fine.
+- A template contains:
+    - variables and/or expressions, which get replaced with values when a template is rendered.
+    - tags (html tags) which control the logic of the template.
+
+- The default Jinja delimiters are configured as follows:
+        {% ... %} for Statements
+        {{ ... }} for Expressions to print to the template output
+        {# ... #} for Comments NOT included in the template output
+
+- A simple Jinja template example:
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Webpage</title>
+</head>
+<body>
+    <ul id="navigation">
+    {% for item in navigation %}
+        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+    {% endfor %}
+    </ul>
+
+    <h1>My Webpage</h1>
+    {{ a_variable }}
+
+    {# a comment #}
+</body>
+</html>
+---
 
 # template inheritance
-- The most powerful – and thus the most complex – part of Django’s template engine is template inheritance.
+
+- The most powerful part of Jinja is template inheritance.
 - Template inheritance allows you to build a base “skeleton” template that contains all the common elements of your site and defines blocks that child templates can override.
+
+- The "base" template, usually called layout.html or base.html, defines a simple HTML skeleton.
+- It’s the job of “child” templates to fill the empty *blocks* with content.
+- When the base template represent the common features between all webpages of the same website, it is called layout.html.
+
+- Child templates must include the {% extends "parent_template.html" %}.
+- parent template name in the child extends block can be written as a path.
+- The extends tag should be the first tag in the child template. (Everything before may cause confusion.)
+- When the template system evaluates this template, it first locates the parent.
+- Note that a block will always be filled in regardless of whether the surrounding condition is evaluated to be true or false.
+
+# blocks
+- block tags {% block block_name %} in the same template should have different names.
+- to use the same block multiple times, use {{ self.block_name() }} when calling the block the second or higher time:
+    <title>{% block title %}{% endblock %}</title>
+    <h1>{{ self.title() }}</h1>
+
+Note: 
+- To display a variable X in the template, the render_template() of the homogeneity functon in view.py should include X. Then use {{ homogeneities.X }} 
+- for more about Jinja, visit: https://jinja.palletsprojects.com/en/3.0.x/templates/.
+
+---Django---
+
+see: https://docs.djangoproject.com/en/2.1/ref/templates/language/#template-inheritance
+
+- Django is a web framework 
 
 ex:
 ---
