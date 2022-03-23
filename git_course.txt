@@ -17,6 +17,9 @@ git add --all
 # track specific file file_name.py
 git add file_name.py
 
+# delete changes in unstaged files
+git checkout --
+
 ----git commit----
 
 - git commit saves changes locally. So versions are stored in the local .git file in the git repo. 
@@ -110,6 +113,7 @@ git merge main
 - When you want to create new changes, you create another new branch, then commit, pr, and merge.
 
 - updating the local git branch is a pull request.
+- use git pull to merge the remote branch into yours
 
 # update specific branch
 # if main set as -u, use second command line
@@ -124,7 +128,7 @@ git pull
 - reset command undo the add and the commit steps.
 - Your local changes are kept but your last commit became the resetted commit.
 - reset uncommit and unadd, so that your repo became unstaged/unadded.
-- --head option in reset completely remove local changes. It's the same as git clone specific_commit.
+- --hard option in reset completely remove local changes. It's the same as git clone specific_commit.
 
 
 # cancel changes before doing git add command
@@ -152,7 +156,16 @@ git log
 git reset commit_code
 
 # reset git repo to specific commit with removing all local changes
-git reset --head commit_code_from_git_log
+git reset --hard commit_code_from_git_log
+
+# reset a specific version of specific files: two methods:
+git checkout commit_code_from_git_log file_name1 file_name2 file_name3
+git reset commit_code_from_git_log file_name1 file_name2 file_name3
+
+---git diff---
+
+# review the changes made to a file
+git diff commit_code_from_git_log file_name
 
 ---git fork---
 
