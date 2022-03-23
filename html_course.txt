@@ -275,7 +275,32 @@ p {
 
 --HTML Links--
 
+...
 
+
+--HTML Tables--
+
+- a table is defined by <table> </table>
+- a row in a table is defined by <tr> </tr> (tr for table row)
+- a cell in a row is defined by <td> </td> (td for table data)
+- for table headers use <th> tag instead of the <td> tag. (th for table header)
+- Everything between <td> and </td> are the content of the table cell.
+- table syntax:
+<table>
+    <tr>
+        <th> cell row1 col1 <th>
+        <th> cell row1 col2 <th>
+    </tr>
+    <tr>
+        <td> cell row2 col1 </td>
+        <td> cell row2 col2 </td>
+    </tr>
+</table>
+
+
+- make sure that the number of cells are the same in each row
+- there are times where a row can have less or more cells than another.
+- by default, the text in <th> elements are bold and centered, but you can change that with CSS. 
 
 
 

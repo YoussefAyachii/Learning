@@ -3,36 +3,43 @@ DevOps is a set of practices that combines software development (Dev) and IT ope
 DevOps has one primary goal to achieve: continuous integration to continuous delivery.
 
 ——Containers——
+- *Containers are live instances of images on which an application or its independent modules are run.*
 - Containers are ways to package code and allow it to run on any machine.
-- Code can be in different languages, rely on other software, install packages from an internet repo, and require specific system requirements (like memory size) in order to run properly.(The you run facebook app, you do not execute the app code on your system but on facebook server/computer)
+- Code can be in different languages, rely on other software, install packages from an internet repo (ex numpy), and require specific system requirements (like memory size) in order to run properly.(ex. When you run facebook app, you do not execute the app code on your system but on facebook server/computer)
 - Remember that when you want to install a software on your computer, it tells you what minimum memory is required, what version of the OS is needed, … These constraints are eliminated when working with containers.
 - In containerization, containers hold all of the requirements needed to run a program.
 - Containers install all the prerequisite files in order to run the corresponding app.
 - With containerization, developers can build/choose the software by themselves to ensure it will run and will not fail. They can instruct exactly what kind of system their software/app needs to run on.
 - In containerization, there are two specific files that define what software is required and what hardware is required :
-	- Dockerfile: controls the runtime environment and the installation of necessary packages.
+	- Dockerfile: controls the runtime environment and the installation of necessary packages. Often called Dockerfile.
 	- Compose file (.yml): controls the hardware and the network security requirements. Often called docker-compose.yml
-- After a container is created, it forms an image/docker image. 
-- An Image/docker image is a file used to execute code in a container (or Docker container). 
+- After a container is created, it forms an image, also called docker image. 
+- An image is a file used to execute code in a container.
 - Docker images act as a set of instructions to build a Docker container, like a template. Docker images also act as the starting point when using Docker.
 - Once the code has been containerized, and the image is created, the code can then be deployed on a chosen host, i.e. it can be run on a personal machine (local) or deployed in a cloud machine.
 
 - One of the most desirable benefits of using containerization as a virtualization method is that it can operate on the cloud. Containers can be run/deployed inside platforms as Amazon EC2 or Google Compute Engine instances.
 
+- *Containers are live instances of images on which an application or its independent modules are run.*
+- In an object-oriented programming analogy, an image is a class and the container is an instance of that class. This allows operational efficiency by allowing to you to multiple containers from a single image.
+- Containers are isolated from one another and bundle their own software, libraries and configuration files. However they can communicate with each other through channels.
+- All of the containers share the services of a single operating system kernel, thus, they use fewer resources than virtual machines.
 
 ——Docker——
 - def = Docker is a set of products that use OS-level virtualization to deliver software in packages called containers.
-- Docker is a container provider.
+- Docker is a software that provides containers.
 - Docker can package an application and its dependencies in a virtual container that can run on any computer.
 - The software that hosts the containers is called Docker Engine.
 
 In app development, two common challenges for DevOps teams:
 - keep the application operational and stable while developing new features.
-- keep the application operational and stable regardless of the underlying platform that it runs on. -> Use of containers.
+- keep the application operational and stable regardless of the underlying platform that it runs on.
+=> Solution: containers.
 
 To avoid deploying codes that introduce environment-dependent bugs, developers run their application on a container.
 
 - Containerization is the process of packaging an application’s code—with dependencies, libraries, and configuration files that the application needs to launch and operate efficiently.
+- *Containers are live instances of images on which an application or its independent modules are run.*
 
 #  Docker Components
 
@@ -40,23 +47,24 @@ To avoid deploying codes that introduce environment-dependent bugs, developers r
 
 1). Engine:
 - The Docker daemon (called >dockerd) is a process that manages Docker containers and handles container objects.
-- The Docker client program, called >docker, provides a command-line interface (CLI) that allows users to interact with Docker daemons.
+- The Docker client program, called >docker, provides a command-line interface (CLI) that allows users to interact with Docker daemons. In other words, docker client provides a CLI that allows you to manage Docker containers.
 - Rq: deamon is a computer program that runs as a background process, rather than being under the direct control of an interactive user. 
-- The Docker Engine is of the core components of a Docker architecture on which the application runs. You could also consider the Docker Engine as the application that’s installed on the system that manages containers, images, and builds.
+- The Docker Engine is composed of the core components of a Docker architecture on which the application runs. You could also consider the Docker Engine as the application that’s installed on the system that manages containers, images, and builds.
 - A Docker Engine consists of the following sub-components: 
 	- The Docker Daemon is basically the server that runs on the host machine. It is responsible for building and managing Docker images.
 	- The Docker Client is a command-line interface (CLI) for sending instructions to the Docker Daemon using special Docker commands. Though a client can run on the host machine, it relies on Docker Engine’s REST API to connect remotely with the daemon.
-	- The REST API supports interactions between the client and the daemon.
+	- The REST API responsible of the interactions between the client and the daemon.
 
 2) Objects:
-Docker objects are various entities used to assemble an application in Docker. The main classes of Docker objects are images, containers, and services.
-	- A Docker container is a standardized, encapsulated environment that runs applications. A container is managed using the Docker API or CLI.
-	- A Docker image is a *read-only* template used to build containers. Images are used to store and ship applications.
-	- A Docker service allows containers to be scaled across multiple Docker daemons. The result is known as a swarm, a set of cooperating daemons that communicate through the Docker API.
+Docker objects are various entities used to assemble an application in Docker. The main classes of Docker objects are containers, images, and services.
+	- A Docker container is a standardized, encapsulated environment that runs applications. A container is managed using the Docker CLI which uses docker API.
+	- A Docker image is a *read-only* template used to build containers. Images are used to store and ship applications. "A docker image can be seen like a (read-only) given version of the app."
+	- A Docker service allows containers to be scaled across multiple Docker daemons. The result is known as a swarm, a set of cooperating daemons that communicate through the Docker REST API.
 
 3) Registries:
-- A Docker registry is a repository of Docker images.
-- The default registry is the Docker Hub, a public registry that stores public and official images for different languages and platforms. By default, a request for an image from Docker is searched within the Docker Hub registry.
+- A Docker registry is a repository of Docker images. 
+- The default registry is the Docker Hub ("like Bioconductor for R packages"), a public registry that stores public and official images for different languages and platforms.
+- By default, a request for an image from Docker is searched within the Docker Hub registry.
 - Docker clients connect to Registries to download/pull images or upload/push images that they have built.
 - Docker Hub is the default registry where Docker looks for images.
 
@@ -66,7 +74,7 @@ Docker objects are various entities used to assemble an application in Docker. T
 - It is a tool for defining and running multi-container Docker applications. 
 - It uses YAML files (.yml) to configure the application's services and performs the creation and start-up process of all the containers with a single command. 
 - The docker-compose command allows users to run commands on multiple containers at once.
-- The docker-compose.yml file is used to define an application's services and includes various configuration options. For example, the build option defines configuration options such as the Dockerfile path.
+- The docker-compose.yml file is used to define an application's services (ex. load postgres image) and includes various configuration options. For example, the build option defines configuration options such as the Dockerfile path.
 
 2) Docker Swarm
 - It provides native clustering functionality for Docker containers, which turns a group of Docker engines into a single virtual Docker engine. […]
@@ -74,22 +82,56 @@ Docker objects are various entities used to assemble an application in Docker. T
 3) Docker Volume
 - It facilitates the independent persistence of data, allowing data to remain even after the container is deleted or re-created.
 
-# Containers
+--Docker Compose--
 
-- Containers are live instances of images on which an application or its independent modules are run.
-- In an object-oriented programming analogy, an image is a class and the container is an instance of that class. This allows operational efficiency by allowing to you to multiple containers from a single image.
-- Containers are isolated from one another and bundle their own software, libraries and configuration files. However they can communicate with each other through channels.
-- All of the containers share the services of a single operating system kernel, thus, they use fewer resources than virtual machines.
+- Compose is a tool for defining and running multi-container Docker applications.
+- With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.
+
+- Compose is a three-step process:
+	1. Dockerfile: Define your app’s environment with a Dockerfile so it can be reproduced anywhere.
+	2. docker-compose.yml: Define the services that make up your app in docker-compose.yml so they can be run together in an isolated environment.
+	3. >docker-compose up: Run $$docker-compose up$$ and the Docker compose command starts and runs your entire app.
+
+- Compose commands: Compose has commands for managing the whole lifecycle of your application: You can also see this information by running docker-compose --help:
+- Commands: 
+	build              Build or rebuild services
+	bundle             Generate a Docker bundle from the Compose file
+	config             Validate and view the Compose file
+	create             Create services
+	down               Stop and remove containers, networks, images, and volumes
+	events             Receive real time events from containers
+	exec               Execute a command in a running container
+	help               Get help on a command
+	images             List images
+	kill               Kill containers
+	logs               View output from containers
+	pause              Pause services
+	port               Print the public port for a port binding
+	ps                 List containers
+	pull               Pull service images
+	push               Push service images
+	restart            Restart services
+	rm                 Remove stopped containers
+	run                Run a one-off command
+	scale              Set number of containers for a service
+	start              Start services
+	stop               Stop services
+	top                Display the running processes
+	unpause            Unpause services
+	up                 Create and start containers
+	version            Show the Docker-Compose version information
+
+- Define and run multi-container applications with Docker:
+	- Syntax: docker-compose --option command
+	- ex: docker-compose --help
+	- ex: docker-compose -h
+	- ex: -f|--file : FILE  Specify an alternate compose file (default: docker-compose.yml)
+	- ex: -p, --projectname : NAME Specify an alternate project name (default: directory name)
+
+- Composer command options full list: >docker-compose -h
+- for more on compose CLI: https://docs.docker.com/compose/reference/
 
 
-
-
-
-
-
-
-
-
-
-
-
+--Build a simple Python web application running on Docker Compose--
+..
+https://docs.docker.com/compose/gettingstarted/
