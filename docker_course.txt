@@ -25,6 +25,22 @@ DevOps has one primary goal to achieve: continuous integration to continuous del
 - Containers are isolated from one another and bundle their own software, libraries and configuration files. However they can communicate with each other through channels.
 - All of the containers share the services of a single operating system kernel, thus, they use fewer resources than virtual machines.
 
+- With containers, you do not have to install any of the services (ex: postgresSQL 3.8) directly on your operating system. Instead, you can only install the container.
+- Because the container have it's own operating system layer (ex. with linux based image), you have everything packaged in one isolated environment.
+- So you have the postgresSQL with the specific version packaged inside one container with a configuration and the start script. 
+- Container = Service (specific version) + configuration + start script
+- Thus, developers do not need to go and download the service depending on their local OS, but rather just go ahead and checkout the container repository to find the specific container and download on your local machine.
+- And the container download step is one single command which fetches and starts the container at the same time. This command line is the same regardless of which OS you're on.
+- the docker command to for starting the container is the same regardless of which OS you're working on. (ex. docker run postgresSQL)
+- Ex. 10 applications that your java script uses and depends on, you will just have to run 10 docker commands, one per container.
+
+- Advantage of containers: you can have different versions of the same service/app running on your local environment without having any conflict.
+
+- When developping an application with containerization, the whole application will be packaged in one container that usually, to run, depends on other containers.
+- The app configuration dependencies are all packaged in the container. Since they are encapsulated in one single environment (container), you only need to run a docker command that pulls/fetches the container image stored somewhere in the repo and then run it.
+- Thus, no environment configuration needed on the server. the only thing needed is to install the docker on the server before you will be able to run containers there.
+
+
 ——Docker——
 - def = Docker is a set of products that use OS-level virtualization to deliver software in packages called containers.
 - Docker is a software that provides containers.

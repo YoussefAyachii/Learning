@@ -87,6 +87,11 @@ git diff branch_name_to_compare_to
 # delete branch once merged
 git branch -d beanch_name
 
+- By default, git clone creates only one branch: the currently checked out one, generally master. However, it does create remote tracking branches for all other branches in the remote. Think of these as local copies of the remote's branches, which can be updated by fetching. They're not real local branches, as they're intended only as pointers to where the remote's branches are, not for you to work on. If you run git branch -a you'll see all branches, local and remote. 
+
+# create a local branch to work on
+git branch branch_name origin/branch_name
+
 ---git merge---
 
 - maybe done directly on github
