@@ -1,0 +1,37 @@
+“””
+virtual environment, a self-contained directory tree that contains a Python installation for a particular version of Python, plus a number of additional packages.
+“”
+
+- module to create and manage virtual env is called venv.
+- A common directory location for virtual environments is ~/.venv
+
+# 1. reate a virtual environment in the current directory (on terminal)
+python3 -m venv env_name
+
+- python3 command tells that the version 3 of python will be installed in the virtual env.
+- python3 -m install the package in to the "right" python.
+- This will create the tutorial-env directory if it doesn’t exist, and also create directories inside it containing a copy of the Python interpreter and various supporting files.
+
+# 2. activate the virtual env created
+source env_name/bin/activate
+
+#3. deactivate venv
+deactivate
+
+PIP Commands 
+
+# uninstall package
+pip uninstall numpy
+
+# get info about package
+pip show numpy
+
+# display all of the packages installed in the virtual environment:
+pip list
+
+# save ll of the packages installed in the virtual environment into a requirements.txt file 
+pip freeze > requirements.txt
+cat requirements.txt
+
+# install packages from requirements.txt
+python -m pip install -r requirements.txt

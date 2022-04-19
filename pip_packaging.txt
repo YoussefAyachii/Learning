@@ -1,0 +1,33 @@
+# requirements
+python3 -m pip install --upgrade pip
+python3 -m pip install --upgrade build
+python3 -m pip install —upgrade twine
+
+# pkg tree 
+project/
+├── LICENSE
+├── pyproject.toml (or exacutable file (metrologist, chmod ..))
+├── README.md
+├── setup.cfg or setup.py
+├── package/
+│       ├── __init__.py
+│       └── code.py
+└── tests/
+
+# generate distrbution packages
+python3 -m build
+
+# upload package on test.pypi: change version nb in setup.cfg or setup.py !
+python3 -m twine upload --repository testpypi dist/*
+
+# upload package on pypi: change version nb in setup.cfg or setup.py!
+python3 -m twine upload dist/*
+
+# install package from test.pypi
+python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps metroloj
+Rq : 
+ --index-url flag to specify TestPyPI instead of live PyPI.
+ --no-deps avoid to install package dependencies
+
+# install package from pypi
+python3 -m pip install —-upgrade metroloj
