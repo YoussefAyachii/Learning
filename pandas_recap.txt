@@ -1,0 +1,51 @@
+—— pandas ——
+# import excel file as pd.DataFrame, note that openpyxl (formerly xlrd), a module that pandas requires to read Excel files.
+df = pd.read_excel(path/link)
+
+# pd.DataFrame attributes include:
+df.columns
+df.index
+df.info(verbose=False)
+
+# To get the index and columns as lists, we can use the tolist() method.
+df.columns.tolist()
+df.index.tolist()
+
+# remove rows/columns
+df.drop([“colname1”,”colname2”], axis=0/1, inplace=true)
+
+# rename columns
+df.rename(columns={“oldname1”:”newname1”, “oldname2”:”newname2”}, inplace=True)
+
+# add a total column/row
+df[“Total”] = df.sum(axis=0/1)
+
+# number of null objects in df
+df.isnull().sum()
+
+# summary by column 
+df.describe()
+
+# print column
+df.colname
+
+# filter by columns (select() in R)
+df[[“colname1”, “colname2”]]
+
+# filter by row 1. By the index 2. By the label/rowname
+# to filter by label, you must assign the correspondingg column to indices
+df.loc[label]
+df[df.index == label]
+df.iloc[index]
+
+# filter by multiple rows
+df[ (df.index[“Col1”] == “label1”) & (df.index[“Col2”]==“label2”) ]
+
+# set a column as row names 
+df.set_index(“colname”, inplace=True)
+
+# apply function to list 
+map(str, range(10,15))
+
+# change indices type to int
+df.index.map(int)
